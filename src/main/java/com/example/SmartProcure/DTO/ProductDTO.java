@@ -2,7 +2,6 @@ package com.example.SmartProcure.DTO;
 
 import com.example.SmartProcure.Model.Product;
 import com.example.SmartProcure.Model.Vendor;
-import jakarta.persistence.Column;
 
 import java.util.ArrayList;
 import java.util.List;

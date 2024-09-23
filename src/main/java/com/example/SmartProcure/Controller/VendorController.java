@@ -1,14 +1,11 @@
 package com.example.SmartProcure.Controller;
 
-import com.example.SmartProcure.DTO.ProductDTO;
 import com.example.SmartProcure.DTO.VendorDTO;
-import com.example.SmartProcure.Model.AddProductResponse;
 import com.example.SmartProcure.Model.AddVendorResponse;
 import com.example.SmartProcure.Model.Product;
 import com.example.SmartProcure.Model.Vendor;
 import com.example.SmartProcure.Repository.ProductRepository;
 import com.example.SmartProcure.Repository.VendorRepository;
-import com.example.SmartProcure.Service.AddProduct;
 import com.example.SmartProcure.Service.VendorOnboarding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,11 +27,6 @@ public class VendorController {
     @Autowired
     private ProductRepository productRepository;
 
-
-//    @GetMapping("/getVendors")
-//    public List<VendorDTO> getAllVendors(){
-//        return VendorOnboarding.getAllVendors();
-//    }
 
     @GetMapping("/getVendors")
     public List<VendorDTO> getVendors() {
@@ -135,6 +127,9 @@ public class VendorController {
             existingVendor.setEmailId(vendor.getEmailId());
             existingVendor.setPersonOfContact(vendor.getPersonOfContact());
             existingVendor.setPocContactNo(vendor.getPocContactNo());
+            existingVendor.setRating(vendor.getRating());
+            existingVendor.setFrequencyOfPurchase(vendor.getFrequencyOfPurchase());
+            existingVendor.setLastPurchasedOn(vendor.getLastPurchasedOn());
             vendorRepository.save(existingVendor);
             return  new ResponseEntity<>("Updated Vendor details successfully", HttpStatus.OK);
         }
