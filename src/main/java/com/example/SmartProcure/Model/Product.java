@@ -2,9 +2,8 @@ package com.example.SmartProcure.Model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
-
-import static org.hibernate.internal.util.collections.ArrayHelper.forEach;
 
 @Entity
 @Table(name = "Product")
@@ -24,13 +23,8 @@ public class Product {
     @Column(name = "Category")
     private String category;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-    @JoinTable(
-            name = "vendorproductmap",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "vendor_id")
-    )
-    Set<Vendor> vendors;
+    @ManyToMany(mappedBy = "products")
+    Set<Vendor> vendors = new HashSet<>();
 
     public Product(){}
 

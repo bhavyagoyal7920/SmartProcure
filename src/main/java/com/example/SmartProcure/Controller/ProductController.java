@@ -1,9 +1,7 @@
 package com.example.SmartProcure.Controller;
 
 import com.example.SmartProcure.DTO.ProductDTO;
-import com.example.SmartProcure.DTO.VendorDTO;
 import com.example.SmartProcure.Model.AddProductResponse;
-import com.example.SmartProcure.Model.AddVendorResponse;
 import com.example.SmartProcure.Model.Product ;
 import com.example.SmartProcure.Model.Vendor;
 import com.example.SmartProcure.Repository.ProductRepository;
@@ -11,11 +9,9 @@ import com.example.SmartProcure.Repository.VendorRepository;
 import com.example.SmartProcure.Service.AddProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 @RestController
