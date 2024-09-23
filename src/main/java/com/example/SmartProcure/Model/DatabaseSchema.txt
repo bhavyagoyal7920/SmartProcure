@@ -1,0 +1,29 @@
+Create DATABASE smartprocure_database;
+use smartprocure_database;
+CREATE TABLE Vendor (
+ID bigint NOT NULL AUTO_INCREMENT,
+Name varchar(100) NOT NULL,
+Address varchar(100),
+ContactNo bigint NOT NULL,
+EmailId varchar(100),
+POC varchar(100),
+POCcontactNo bigint,
+Primary Key (ID)
+);
+
+CREATE TABLE Product (
+ID bigint NOT NULL AUTO_INCREMENT,
+Name varchar(100) NOT NULL,
+Alias varchar(1024),
+Brand varchar(100),
+Category varchar(100),
+Primary Key (ID)
+);
+
+CREATE TABLE VendorProductMap(
+VendorId bigint,
+ProductId bigint,
+Primary Key(VendorId, ProductId),
+Foreign Key(VendorId) REFERENCES Vendor(ID),
+Foreign Key(ProductId) REFERENCES Product(ID)
+);
