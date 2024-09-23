@@ -2,9 +2,9 @@ package com.example.SmartProcure.DTO;
 
 import com.example.SmartProcure.Model.Product;
 import com.example.SmartProcure.Model.Vendor;
+import jakarta.persistence.Column;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class VendorDTO {
@@ -16,10 +16,6 @@ public class VendorDTO {
     private String emailId;
     private String personOfContact;
     private Long pocContactNo;
-    private float rating;
-    private int frequencyOfPurchase;
-    private Date lastPurchasedOn;
-
     private List<ProductDTO> products = new ArrayList<>();
 
     public VendorDTO(){}
@@ -32,9 +28,6 @@ public class VendorDTO {
         this.emailId = vendor.getEmailId();
         this.personOfContact = vendor.getPersonOfContact();
         this.pocContactNo = vendor.getPocContactNo();
-        this.rating = vendor.getRating();
-        this.lastPurchasedOn = vendor.getLastPurchasedOn();
-        this.frequencyOfPurchase = vendor.getFrequencyOfPurchase();
         for(Product product: vendor.getProducts()){
             ProductDTO productDTO = new ProductDTO();
             productDTO.setId(product.getId());
@@ -108,29 +101,5 @@ public class VendorDTO {
 
     public void setProducts(List<ProductDTO> products) {
         this.products = products;
-    }
-
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
-    public int getFrequencyOfPurchase() {
-        return frequencyOfPurchase;
-    }
-
-    public void setFrequencyOfPurchase(int frequencyOfPurchase) {
-        this.frequencyOfPurchase = frequencyOfPurchase;
-    }
-
-    public Date getLastPurchasedOn() {
-        return lastPurchasedOn;
-    }
-
-    public void setLastPurchasedOn(Date lastPurchasedOn) {
-        this.lastPurchasedOn = lastPurchasedOn;
     }
 }

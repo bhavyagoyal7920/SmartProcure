@@ -1,8 +1,10 @@
 package com.example.SmartProcure.Model;
 
+import com.example.SmartProcure.Model.Product;
 import jakarta.persistence.*;
-import java.util.Date;
+
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,12 +28,6 @@ public class Vendor {
     private String personOfContact;
     @Column(name = "POCcontactNo")
     private Long pocContactNo;
-    @Column(name = "Rating")
-    private float rating = 0.0f;
-    @Column(name = "FrequencyOfPurchase")
-    private int frequencyOfPurchase = 0;
-    @Column(name = "LastPurchasedOn")
-    private Date lastPurchasedOn = null;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
     @JoinTable(
@@ -40,6 +36,8 @@ public class Vendor {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
     Set<Product> products;
+
+
 
     public Vendor(){
     }
@@ -109,31 +107,6 @@ public class Vendor {
         this.pocContactNo = pocContactNo;
     }
 
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-
-        this.rating = rating;
-    }
-
-    public int getFrequencyOfPurchase() {
-        return frequencyOfPurchase;
-    }
-
-    public void setFrequencyOfPurchase(int frequencyOfPurchase) {
-        this.frequencyOfPurchase = frequencyOfPurchase;
-    }
-
-    public Date getLastPurchasedOn() {
-        return lastPurchasedOn;
-    }
-
-    public void setLastPurchasedOn(Date lastPurchasedOn) {
-        this.lastPurchasedOn = lastPurchasedOn;
-    }
-
     public Set<Product> getProducts() {
         return products;
     }
@@ -144,7 +117,6 @@ public class Vendor {
         }
         this.products.addAll(products);
     }
-
 
 
 }

@@ -5,24 +5,30 @@ import com.example.SmartProcure.Model.Product;
 import com.example.SmartProcure.Model.Vendor;
 import com.example.SmartProcure.Repository.ProductRepository;
 import com.example.SmartProcure.Repository.VendorRepository;
+import com.example.SmartProcure.Service.VendorOnboarding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/api/common")
 public class CommonController {
 
     @Autowired
+    VendorController vendorController;
+    @Autowired
     VendorRepository vendorRepository;
     @Autowired
     ProductRepository productRepository;
     @Autowired
     ProductController productController;
-
 
     //add a new Vendor and a new product
     @PostMapping("/newVendorAndProduct")
@@ -45,44 +51,6 @@ public class CommonController {
         else{
             return new ResponseEntity<>("Product or Vendor details missing.", HttpStatus.BAD_REQUEST);
         }
-    }
-
-
-
-    //delete a product from a vendors list or vice versa
-    @DeleteMapping("/deleteProductVendorMapping/{vendId}/{prodId}")
-    public ResponseEntity<String> deleteProductVendorMapping(@PathVariable(name = "vendId") String vendId, @PathVariable(name = "prodId") String prodId){
-
-        Vendor vendor;
-        Product product;
-        // Step 1: Fetch the vendor using the vendor service or repository
-        try{
-            vendor = vendorRepository.getReferenceById(Long.valueOf(vendId));
-        }
-        catch(Exception ex){
-            return new ResponseEntity<>("Vendor not found", HttpStatus.NOT_FOUND);
-        }
-        try{
-            product = productRepository.getReferenceById(Long.valueOf(prodId));
-        }
-        catch(Exception ex){
-            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
-        }
-
-        // Step 3: Check if the product exists in the vendor's list of products
-        if (!vendor.getProducts().contains(product)) {
-             return new ResponseEntity<>("Product not associated with vendor", HttpStatus.BAD_REQUEST);
-        }
-
-        // Step 4: Remove the product from the vendor's list
-        vendor.getProducts().remove(product);
-
-        // Step 5: Save the vendor (or alternatively save the product if the association is bi-directional)
-        vendorRepository.save(vendor);
-
-        // Return success message
-        return new ResponseEntity<>("Product successfully removed from vendor", HttpStatus.OK);
-
     }
 
 }
