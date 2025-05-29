@@ -1,15 +1,20 @@
 package com.example.SmartProcure.Model;
 
+import java.util.List;
+
 public class AddVendorProduct {
 
     public Vendor vendor;
-    public Product product;
+    public List<String> existingProduct;
+    public List<Product> newProduct;
+
 
     public AddVendorProduct(){}
 
-    public  AddVendorProduct(Vendor vendor, Product product){
+    public  AddVendorProduct(Vendor vendor, List<String> existingProduct, List<Product> newProduct){
         this.vendor = vendor;
-        this.product = product;
+        this.newProduct = newProduct;
+        this.existingProduct = existingProduct;
     }
 
     public Vendor getVendor() {
@@ -20,11 +25,19 @@ public class AddVendorProduct {
         this.vendor = vendor;
     }
 
-    public Product getProduct() {
-        return product;
+    public List<String> getExistingProduct() {
+        return existingProduct;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setExistingProduct(List<String> existingProduct) {
+        this.existingProduct = existingProduct;
+    }
+
+    public List<Product> getNewProduct() {
+        return newProduct;
+    }
+
+    public void setNewProduct(List<Product> newProduct) {
+        this.newProduct = newProduct;
     }
 }

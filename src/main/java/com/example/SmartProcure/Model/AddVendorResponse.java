@@ -10,17 +10,16 @@ public class AddVendorResponse {
 
     public AddVendorResponse(List<String> existingVendor, List<Vendor> newVendors) {
         this.existingVendor = existingVendor;
-        for(Vendor vendor: newVendors){
+
             this.newVendors = newVendors;
-        }
 
     }
 
-    public List<String> getExisting() {
+    public List<String> getExistingVendor() {
         return existingVendor;
     }
 
-    public void setExisting(List<String> existing) {
+    public void setExistingVendor(List<String> existing) {
         this.existingVendor = existing;
     }
 

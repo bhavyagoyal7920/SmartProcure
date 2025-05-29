@@ -1,5 +1,8 @@
 package com.example.SmartProcure.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -18,21 +21,30 @@ public class Product {
     @Column(name = "Alias")
     private String alias;
 
-    @Column(name = "Brand")
-    private String brand;
+    @Column(name = "Make")
+    private String make;
     @Column(name = "Category")
     private String category;
 
+    @Column(name = "Description")
+    private String description;
+
+    @Column(name = "Notes")
+    private String notes;
+
     @ManyToMany(mappedBy = "products")
-    Set<Vendor> vendors = new HashSet<>();
+    @JsonIgnore
+    private Set<Vendor> vendors = new HashSet<>();
 
     public Product(){}
 
-    public Product(String techName, String alias, String brand, String category) {
+    public Product(String techName, String alias, String make, String category, String description, String notes) {
         this.techName = techName;
         this.alias = alias;
-        this.brand = brand;
+        this.make = make;
         this.category = category;
+        this.description = description;
+        this.notes = notes;
     }
 
     public Long getId() {
@@ -59,12 +71,12 @@ public class Product {
         this.alias = alias;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getMake() {
+        return make;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setMake(String make) {
+        this.make = make;
     }
 
     public String getCategory() {
@@ -83,5 +95,19 @@ public class Product {
         this.vendors.addAll(vendors);
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

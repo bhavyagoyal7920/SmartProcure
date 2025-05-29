@@ -2,17 +2,21 @@ package com.example.SmartProcure.DTO;
 
 import com.example.SmartProcure.Model.Product;
 import com.example.SmartProcure.Model.Vendor;
+import jakarta.persistence.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class ProductDTO {
     private Long id;
     private String techName;
     private String alias;
 
-    private String brand;
+    private String make;
     private String category;
+    private String description;
+    private String notes;
     private List<VendorDTO> vendors = new ArrayList<>();
 
     public ProductDTO(){}
@@ -21,17 +25,33 @@ public class ProductDTO {
         this.id = product.getId();
         this.techName = product.getTechName();
         this.alias = product.getAlias();
-        this.brand = product.getBrand();;
+        this.make = product.getMake();
         this.category = product.getCategory();
+        this.description = product.getDescription();
+        this.notes = product.getNotes();
         for(Vendor vendor: product.getVendors()){
             VendorDTO vendorDTO = new VendorDTO();
             vendorDTO.setId(vendor.getId());
             vendorDTO.setName(vendor.getName());
+            vendorDTO.setGstNo(vendor.getGstNo());
             vendorDTO.setAddress(vendor.getAddress());
+            vendorDTO.setCity(vendor.getCity());
+            vendorDTO.setPincode(vendor.getPincode());
             vendorDTO.setContactNo(vendor.getContactNo());
             vendorDTO.setEmailId(vendor.getEmailId());
-            vendorDTO.setPersonOfContact(vendor.getPersonOfContact());
-            vendorDTO.setPocContactNo(vendor.getPocContactNo());
+            vendorDTO.setPersonOfContact1(vendor.getPersonOfContact1());
+            vendorDTO.setPoc1ContactNo(vendor.getPoc1ContactNo());
+            vendorDTO.setPoc1EmailId(vendor.getPoc1EmailId());
+            vendorDTO.setDesignationOfPerson1(vendor.getDesignationOfPerson1());
+            vendorDTO.setPersonOfContact2(vendor.getPersonOfContact2());
+            vendorDTO.setPoc2ContactNo(vendor.getPoc2ContactNo());
+            vendorDTO.setPoc2EmailId(vendor.getPoc2EmailId());
+            vendorDTO.setDesignationOfPerson2(vendor.getDesignationOfPerson2());
+            vendorDTO.setPersonOfContact3(vendor.getPersonOfContact3());
+            vendorDTO.setPoc3ContactNo(vendor.getPoc3ContactNo());
+            vendorDTO.setPoc3EmailId(vendor.getPoc3EmailId());
+            vendorDTO.setDesignationOfPerson3(vendor.getDesignationOfPerson3());
+            vendorDTO.setNotes(vendor.getNotes());
             vendors.add(vendorDTO);
         }
     }
@@ -60,12 +80,12 @@ public class ProductDTO {
         this.alias = alias;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getMake() {
+        return make;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setMake(String brand) {
+        this.make = make;
     }
 
     public String getCategory() {
@@ -74,6 +94,22 @@ public class ProductDTO {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public List<VendorDTO> getVendors() {

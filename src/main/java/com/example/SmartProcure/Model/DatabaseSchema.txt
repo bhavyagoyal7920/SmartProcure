@@ -15,7 +15,7 @@ CREATE TABLE Product (
 ID bigint NOT NULL AUTO_INCREMENT,
 Name varchar(100) NOT NULL,
 Alias varchar(1024),
-Brand varchar(100),
+Make varchar(100),
 Category varchar(100),
 Primary Key (ID)
 );
